@@ -1,0 +1,11 @@
+{
+    "name": "MongoHelper",
+    "description": "cache and manage mongoose connections",
+    "version": "0.0.1",
+    "author": "yonysun",
+    "main": "index.js",
+    "dependencies": {
+        "md5": "^2.2.1",
+        "mongoose": "^4.13.9"
+    }
+}
