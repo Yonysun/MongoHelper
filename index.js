@@ -28,7 +28,7 @@ class MongoHelper {
         this.mongoConnections = {};
     }
 
-    private static getUrlFromConfig(cfg) {
+    static getUrlFromConfig(cfg) {
         if (!cfg) {
             throw new Error('invalid config: ' + cfg);
             return null;
