@@ -1,7 +1,7 @@
 //连接数据库
 const md5 = require('md5');
-const mongoose = require('mongoose');
-const MongoInstance = new mongoose.Mongoose();
+// const mongoose
+const MongoInstance = require('mongoose');;
 MongoInstance.Promise = global.Promise;
 /**
  * 连接成功
@@ -22,11 +22,9 @@ MongoInstance.connection.on('disconnected', function () {
     console.error('Mongoose connection disconnected');
 });
 
-class MongoHelper {
+const mongoConnections = {};
 
-    constructor() {
-        this.mongoConnections = {};
-    }
+class MongoHelper {
 
     static getUrlFromConfig(cfg) {
         if (!cfg) {
@@ -56,22 +54,25 @@ class MongoHelper {
     static closeConnection(cfg) {
         const mongoUrl = this.getUrlFromConfig(cfg);
         const key = md5(mongoUrl);
-        if (this.mongoConnections[key]) {
-            this.mongoConnections[key].close();
+        if (mongoConnections[key]) {
+            mongoConnections[key].close();
         }
     }
 
     static getDbConnection(cfg) {
         const mongoUrl = this.getUrlFromConfig(cfg);
         const key = md5(mongoUrl);
-        if (this.mongoConnections[key]) {
-            return this.mongoConnections[key];
+        if (mongoConnections[key]) {
+            return mongoConnections[key];
         }
         //创建数据库对象
         const mg = MongoInstance.createConnection(mongoUrl, {useMongoClient: true});
-        this.mongoConnections[key] = mg;
+        mongoConnections[key] = mg;
         return mg;
     };
+    static newSchema(){
+        return new MongoInstance.Schema({},{strict:false});
+    }
 }
 
 module.exports = MongoHelper;
