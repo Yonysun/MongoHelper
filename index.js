@@ -1,7 +1,7 @@
 //连接数据库
 const md5 = require('md5');
 // const mongoose
-const MongoInstance = require('mongoose');;
+const MongoInstance = require('mongoose');
 MongoInstance.Promise = global.Promise;
 /**
  * 连接成功
@@ -47,7 +47,7 @@ class MongoHelper {
             mongoUrl += cfg.username + ':' + cfg.password + '@';
         }
         mongoUrl += cfg.host + ':' + cfg.port + '/' + cfg.dbName;
-        console.log('mongoUrl:', mongoUrl);
+        // console.log('getUrlFromConfig: ', cfg.host,cfg.dbName);
         return mongoUrl
     }
 
