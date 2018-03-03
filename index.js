@@ -75,6 +75,6 @@ class MongoHelper {
     }
 }
 
-MongoHelper.ObjectId = mongoose.Types.ObjectId;
+MongoHelper.ObjectId = mongoose.Schema.Types.ObjectId;
 
 module.exports = MongoHelper;
