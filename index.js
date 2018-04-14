@@ -66,7 +66,7 @@ class MongoHelper {
             return mongoConnections[key];
         }
         //创建数据库对象
-        const mg = mongoose.createConnection(mongoUrl, {useMongoClient: true});
+        const mg = mongoose.createConnection(mongoUrl, {useMongoClient: true,autoReconnect:true,poolSize:10});
         mongoConnections[key] = mg;
         return mg;
     };
